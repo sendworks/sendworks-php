@@ -13,11 +13,11 @@ You can install using composer:
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/troelskn/sendworks-php"
+      "url": "https://github.com/sendworks/sendworks-php"
     }
   ],
   "require": {
-    "troelskn/sendworks-php" : "master"
+    "sendworks/sendworks-php" : "master"
   }
 }
 ```
