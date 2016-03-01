@@ -11,7 +11,7 @@ $recipient = new Sendworks\Address(['post_code' => 2860, 'country_code' => 'DK']
 $order = new Sendworks\Order(['subtotal' => '200 DKK']);
 var_dump($sendworks->products->select($recipient, $order));
 
-// Get service points for a product
+// Get all service points for a product
 $recipient = new Sendworks\Address(['post_code' => 2860, 'country_code' => 'DK']);
 $products = $sendworks->products->select();
 var_dump($sendworks->service_points->select($products[0], $recipient));
@@ -48,6 +48,8 @@ $recipient = new Sendworks\Address([
 ]);
 $parcel = new Sendworks\Parcel([]);
 $products = $sendworks->products->select($recipient);
-$shipment = new Sendworks\Shipment(['recipient' => $recipient, 'parcels' => [$parcel]]);
-$sendworks->shipments->save($shipment);
+$shipment = new Sendworks\Shipment(['recipient' => $recipient, 'parcels' => [$parcel], 'product' => $products[0]]);
+$shipment->shipment_reference = "TEST:" . time();
+$shipment = $sendworks->shipments->save($shipment);
+var_dump($shipment);
 */

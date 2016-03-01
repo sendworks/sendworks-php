@@ -3,13 +3,13 @@ namespace Sendworks;
 
 class Product {
   protected $connection;
-  public $id;
+  public $code;
   public $name;
   public $carrier;
   public $service_points = [];
   function __construct($data = [], $connection = null) {
     $this->connection = $connection;
-    foreach (['id', 'name'] as $prop) {
+    foreach (['code', 'name'] as $prop) {
       if (isset($data[$prop])) {
         $this->$prop = $data[$prop];
       }
@@ -28,4 +28,12 @@ class Product {
       }
     }
   }
+
+  static function import($mixed, $connection = null) {
+    if ($mixed instanceOf Product) {
+      return $mixed;
+    }
+    return new self($mixed, $connection);
+  }
+
 }

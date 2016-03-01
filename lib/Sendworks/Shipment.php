@@ -23,7 +23,7 @@ class Shipment {
     foreach (['sender','recipient'] as $prop) {
       $this->$prop = isset($data[$prop]) ? Address::import($data[$prop]) : null;
     }
-    $this->product = isset($data['product']) ? new Product($data['product']) : null;
+    $this->product = isset($data['product']) ? Product::import($data['product']) : null;
     if (isset($data['parcels'])) {
       $this->parcels = [];
       foreach ($data['parcels'] as $parcel_data) {
@@ -72,7 +72,7 @@ class Shipment {
       'tracking_url' => $this->tracking_url,
       'sender' => $this->sender ? $this->sender->toHash() : null,
       'recipient' => $this->recipient ? $this->recipient->toHash() : null,
-      'product' => $this->product ? ['id' => $this->product->id] : null,
+      'product' => $this->product ? ['code' => $this->product->code] : null,
       'parcels' => $parcels,
       'labels' => $labels,
     ];

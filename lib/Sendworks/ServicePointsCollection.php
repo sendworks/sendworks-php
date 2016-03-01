@@ -11,9 +11,9 @@ class ServicePointsCollection {
   function select($product, $recipient, $limit = null) {
     $query = [];
     if ($product instanceOf Product) {
-      $query['product_id'] = $product->id;
+      $query['product_code'] = $product->code;
     } else {
-      $query['product_id'] = $product;
+      $query['product_code'] = $product;
     }
     if ($limit) {
       $query['limit'] = $limit;
