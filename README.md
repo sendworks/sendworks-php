@@ -22,6 +22,8 @@ You can install using composer:
 }
 ```
 
+Or you can clone the repository with git. If you do this, be sure to run `composer install` to pull in dependencies.
+
 ##Getting started
 
 For now, have a look at examples.php

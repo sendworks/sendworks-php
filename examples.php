@@ -1,10 +1,15 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
+// Replace this with your actual api key
 $api_key = 'YOUR_KEY_HERE';
 
+// Connect to sandbox, set debug to dump all http to stdout
 $sendworks = new Sendworks\Connection($api_key, 'api.sandbox.sendworks.com', ['debug' => true]);
-//$sendworks = new Sendworks\Connection($api_key, 'localhost:3000', ['debug' => true]);
+// Use built-in http client (in case you don't want to depend on Guzzle)
+// $sendworks = new Sendworks\Connection($api_key, 'api.sandbox.sendworks.com', ['http_client' => '\Sendworks\Http\Client', 'debug' => true]);
+// Local testing
+// $sendworks = new Sendworks\Connection($api_key, 'localhost:3000', ['debug' => true]);
 
 // Get a quote for a shipment
 $recipient = new Sendworks\Address(['post_code' => 2860, 'country_code' => 'DK']);
