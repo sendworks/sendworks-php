@@ -1,16 +1,13 @@
 <?php
-// If you installed with composer, use this
-require __DIR__ . '/vendor/autoload.php';
-// If you're using the library stand-alone, load this
-// require __DIR__ . '/lib/Sendworks/autoload.php';
+require __DIR__ . '/include_all.php';
 
 // Replace this with your actual api key
 $api_key = 'YOUR_KEY_HERE';
 
 // Connect to sandbox, set debug to dump all http to stdout
-// $sendworks = new Sendworks\Connection($api_key, 'api.sandbox.sendworks.com', ['debug' => true]);
-// Use built-in http client (in case you don't want to depend on Guzzle)
-// $sendworks = new Sendworks\Connection($api_key, 'api.sandbox.sendworks.com', ['http_client' => '\Sendworks\Http\Client', 'debug' => true]);
+$sendworks = new Sendworks\Connection($api_key, 'api.sandbox.sendworks.com', ['debug' => true]);
+// By default, the built-in http client is used, but you can override this to use \GuzzleHttp\Client instead, if you please.
+// $sendworks = new Sendworks\Connection($api_key, 'api.sandbox.sendworks.com', ['http_client' => '\GuzzleHttp\Client', 'debug' => true]);
 // Local testing
 // $sendworks = new Sendworks\Connection($api_key, 'localhost:3000', ['debug' => true]);
 

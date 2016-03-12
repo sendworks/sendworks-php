@@ -24,12 +24,12 @@ class Connection {
 
   function client() {
     if (!$this->client) {
-      $protocol = preg_match('/localhost/', $this->domain) ? 'http' : 'https';
       $options = $this->http_options;
       if (!isset($options['http_client'])) {
-        $options['http_client'] = '\GuzzleHttp\Client';
+        $options['http_client'] = '\Sendworks\Http\Client';
       }
       if (!isset($options['base_uri'])) {
+        $protocol = preg_match('/localhost/', $this->domain) ? 'http' : 'https';
         $options['base_uri'] = $protocol . "://" . $this->domain . "/v1/";
       }
       if (!isset($options['headers'])) {

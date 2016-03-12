@@ -4,7 +4,10 @@
     "version": "1.0.0",
     "require": {
         "php": ">=5.5.0",
-        "guzzlehttp/guzzle": "^6.1"
+        "ext-curl": "*"
+    },
+    "suggest": {
+        "guzzlehttp/guzzle": "You can use GuzzleHttp as the http client driver."
     },
     "authors": [
         {
