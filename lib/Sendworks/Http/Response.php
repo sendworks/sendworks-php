@@ -9,14 +9,14 @@ class Response {
   }
 
   function getStatusCode() {
-		return $this->curl_info['http_code'];
+    return $this->curl_info['http_code'];
   }
 
   function getHeader($name) {
     $result = [];
-		if (preg_match('/^'.$name.': (.+)$/im', $this->raw_header, $mm)) {
-			$result[] = trim($mm[1]);
-		}
+    if (preg_match('/^'.$name.': (.+)$/im', $this->raw_header, $mm)) {
+      $result[] = trim($mm[1]);
+    }
     return $result;
   }
 

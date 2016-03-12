@@ -69,10 +69,10 @@ class Client {
   protected function send($method, $path, $options) {
     list($url, $headers, $body) = $this->buildRequest($path, $options);
 
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
-		curl_setopt($curl, CURLOPT_USERAGENT, $this->user_agent);
-		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
+    curl_setopt($curl, CURLOPT_USERAGENT, $this->user_agent);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_VERBOSE, $this->debug);
     curl_setopt($curl, CURLOPT_HEADER, true);
@@ -97,11 +97,11 @@ class Client {
     foreach ($headers as $key => $value) {
       $raw_request_headers[] = "$key: $value";
     }
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $raw_request_headers);
-		curl_setopt($curl, CURLOPT_URL, $url);
-		$result = curl_exec($curl);
-		$curl_info = curl_getinfo($curl);
- 		curl_close($curl);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $raw_request_headers);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    $result = curl_exec($curl);
+    $curl_info = curl_getinfo($curl);
+    curl_close($curl);
     list($header, $body) = explode("\r\n\r\n", $result, 2);
     return new Response($header, $body, $curl_info);
   }
