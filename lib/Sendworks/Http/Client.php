@@ -55,6 +55,9 @@ class Client {
       $body = json_encode($options['json']);
       $headers['Content-Type'] = 'application/json';
     }
+    if (!isset($headers['X-Request-Id'])) {
+      $headers['X-Request-Id'] = bin2hex(openssl_random_pseudo_bytes(16));
+    }
     if (preg_match('~^http~i', $path)) {
       $url = $path;
     } else {
