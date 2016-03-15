@@ -6,6 +6,8 @@ namespace Sendworks\Http;
  */
 class Client {
 
+  protected $curl;
+
   function __construct($options = []) {
     if (!extension_loaded('curl')) {
       trigger_error("curl extension required", E_USER_ERROR);
@@ -72,7 +74,7 @@ class Client {
   protected function send($method, $path, $options) {
     list($url, $headers, $body) = $this->buildRequest($path, $options);
 
-    $curl = curl_init();
+    $curl = $this->getCurlHandle();
     curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
     curl_setopt($curl, CURLOPT_USERAGENT, $this->user_agent);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
@@ -104,8 +106,14 @@ class Client {
     curl_setopt($curl, CURLOPT_URL, $url);
     $result = curl_exec($curl);
     $curl_info = curl_getinfo($curl);
-    curl_close($curl);
     list($header, $body) = explode("\r\n\r\n", $result, 2);
     return new Response($header, $body, $curl_info);
+  }
+
+  protected function getCurlHandle() {
+    if (!isset($this->curl)) {
+      $this->curl = curl_init();
+    }
+    return $this->curl;
   }
 }
