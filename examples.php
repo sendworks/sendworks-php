@@ -2,7 +2,8 @@
 require __DIR__ . '/include_all.php';
 
 // Replace this with your actual api key
-$api_key = 'YOUR_KEY_HERE';
+// Or just set SENDWORKS_API_KEY as an env variable
+$api_key = isset($_SERVER['SENDWORKS_API_KEY']) ? $_SERVER['SENDWORKS_API_KEY'] : 'YOUR_KEY_HERE';
 
 // Connect to sandbox, set debug to dump all http to stdout
 $sendworks = new Sendworks\Connection($api_key, 'api.sandbox.sendworks.com', ['debug' => true]);
@@ -40,8 +41,8 @@ foreach ($sendworks->orders->select() as $order) {
   }
 }
 
-// Create a shipment
 /*
+// Create a shipment
 $recipient = new Sendworks\Address([
   'name' => 'Lorem von Ipsum',
   'street1' => 'Mars Alle 1',
@@ -52,9 +53,15 @@ $recipient = new Sendworks\Address([
   'phone' => '12345678',
 ]);
 $parcel = new Sendworks\Parcel([]);
+echo "Select valid products for shipment\n";
 $products = $sendworks->products->select($recipient);
+var_dump($products[0]);
 $shipment = new Sendworks\Shipment(['recipient' => $recipient, 'parcels' => [$parcel], 'product' => $products[0]]);
 $shipment->shipment_reference = "TEST:" . time();
+echo "Create shipment\n";
 $shipment = $sendworks->shipments->save($shipment);
+var_dump($shipment);
+echo "Purchase shipment\n";
+$shipment = $sendworks->shipments->buy($shipment);
 var_dump($shipment);
 */
