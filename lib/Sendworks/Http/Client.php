@@ -16,7 +16,7 @@ class Client {
     $this->base_uri = isset($options['base_uri']) ? $options['base_uri'] : '';
     $this->headers = isset($options['headers']) ? $options['headers'] : [];
     $this->timeout = 10;
-    $this->user_agent = 'SendworksHttpClient/1.0';
+    $this->user_agent = 'SendworksHttpClient/1.1';
     $this->user_agent .= ' curl/' . \curl_version()['version'];
     $this->user_agent .= ' PHP/' . PHP_VERSION;
   }
