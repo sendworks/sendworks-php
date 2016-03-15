@@ -44,7 +44,6 @@ You should replace `YOUR_KEY_HERE` with your actual api key.
 You can now use the connection to get a quote:
 
 ```php
-// Get a quote for a shipment
 $recipient = new Sendworks\Address(['post_code' => 2860, 'country_code' => 'DK']);
 $order = new Sendworks\Order(['subtotal' => '200 DKK']);
 var_dump($sendworks->products->select($recipient, $order));
@@ -53,7 +52,6 @@ var_dump($sendworks->products->select($recipient, $order));
 And to create a shipment:
 
 ```php
-// Create a shipment
 $recipient = new Sendworks\Address([
   'name' => 'Lorem von Ipsum',
   'street1' => 'Mars Alle 1',
@@ -68,6 +66,7 @@ $products = $sendworks->products->select($recipient);
 $shipment = new Sendworks\Shipment(['recipient' => $recipient, 'parcels' => [$parcel], 'product' => $products[0]]);
 $shipment->shipment_reference = "TEST:" . time();
 $shipment = $sendworks->shipments->save($shipment);
+$shipment = $sendworks->shipments->buy($shipment);
 var_dump($shipment);
 ```
 
