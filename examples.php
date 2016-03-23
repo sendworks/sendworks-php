@@ -62,6 +62,8 @@ echo "Create shipment\n";
 $shipment = $sendworks->shipments->save($shipment);
 var_dump($shipment);
 echo "Purchase shipment\n";
-$shipment = $sendworks->shipments->buy($shipment);
-var_dump($shipment);
+if ($shipment->allowPurchase()) {
+  $shipment = $sendworks->shipments->buy($shipment);
+  var_dump($shipment);
+}
 */

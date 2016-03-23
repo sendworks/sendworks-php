@@ -12,6 +12,7 @@ class Shipment {
   public $tracking_url;
   public $labels = [];
   public $order;
+  public $allow;
 
   function __construct($data = [], $connection = null) {
     $this->connection = $connection;
@@ -39,6 +40,9 @@ class Shipment {
     if (isset($data['order'])) {
       $this->order = Order::import($data['order'], $connection);
     }
+    if (isset($data['allow'])) {
+      $this->allow = $data['allow'];
+    }
   }
 
   function rates() {
@@ -55,6 +59,18 @@ class Shipment {
 
   function save() {
     return $this->connection->shipments->save($this);
+  }
+
+  function allowChange() {
+    return isset($this->allow, $this->allow['change']) && $this->allow['change'];
+  }
+
+  function allowPurchase() {
+    return isset($this->allow, $this->allow['purchase']) && $this->allow['purchase'];
+  }
+
+  function allowCancel() {
+    return isset($this->allow, $this->allow['cancel']) && $this->allow['cancel'];
   }
 
   function toHash() {
