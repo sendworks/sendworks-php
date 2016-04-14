@@ -17,6 +17,10 @@ class Money {
     ];
   }
 
+  function toFloat() {
+    return $this->cents / 100;
+  }
+
   static function import($mixed) {
     if (is_array($mixed)) {
       return new self($mixed);
