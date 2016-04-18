@@ -20,4 +20,11 @@ class ServicePoint {
       }
     }
   }
+
+  function getTitle() {
+    if ($this->name) {
+      return implode(", ", array_filter(array($this->name, $this->street1, $this->post_code, $this->city)));
+    }
+    return $this->reference;
+  }
 }
