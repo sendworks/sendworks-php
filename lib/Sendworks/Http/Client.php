@@ -12,11 +12,11 @@ class Client {
     if (!extension_loaded('curl')) {
       trigger_error("curl extension required", E_USER_ERROR);
     }
-    $this->debug = isset($options['debug']) && $options['debug'];
+    $this->debug = isset($options['debug']) ? $options['debug'] : null;
     $this->base_uri = isset($options['base_uri']) ? $options['base_uri'] : '';
     $this->headers = isset($options['headers']) ? $options['headers'] : [];
     $this->timeout = 10;
-    $this->user_agent = 'SendworksHttpClient/1.1';
+    $this->user_agent = 'SendworksHttpClient/1.1.2';
     $this->user_agent .= ' curl/' . \curl_version()['version'];
     $this->user_agent .= ' PHP/' . PHP_VERSION;
   }
@@ -79,7 +79,10 @@ class Client {
     curl_setopt($curl, CURLOPT_USERAGENT, $this->user_agent);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_VERBOSE, $this->debug);
+    curl_setopt($curl, CURLOPT_VERBOSE, !!$this->debug);
+    if ($this->debug) {
+      curl_setopt($curl, CURLOPT_STDERR, is_string($this->debug) ? fopen($this->debug, "a+") : STDOUT);
+    }
     curl_setopt($curl, CURLOPT_HEADER, true);
 
     switch ($method) {
@@ -107,6 +110,9 @@ class Client {
     $result = curl_exec($curl);
     $curl_info = curl_getinfo($curl);
     list($header, $body) = explode("\r\n\r\n", $result, 2);
+    if ($body && $this->debug) {
+      error_log("$body\n", 3, is_string($this->debug) ? fopen($this->debug, "a+") : STDOUT);
+    }
     return new Response($header, $body, $curl_info);
   }
 
