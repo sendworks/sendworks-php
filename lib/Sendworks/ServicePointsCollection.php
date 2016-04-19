@@ -8,6 +8,20 @@ class ServicePointsCollection {
     $this->connection = $connection;
   }
 
+  function find($product, $reference) {
+    $query = [];
+    if ($product instanceOf Product) {
+      $product_code = $product->code;
+    } else {
+      $product_code = $product;
+    }
+    if ($reference instanceOf ServicePoint) {
+      $reference = $reference->reference;
+    }
+    $response = $this->client()->get(implode('/', array('service_points', urlencode($product_code), urlencode($reference))));
+    return new ServicePoint(json_decode($response->getBody(), true));
+  }
+
   function select($product, $recipient, $limit = null) {
     $query = [];
     if ($product instanceOf Product) {
