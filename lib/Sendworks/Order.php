@@ -52,6 +52,23 @@ class Order {
     return $this->connection->orders->delete($this);
   }
 
+  function toHash() {
+    $items = [];
+    foreach ($this->items as $item) {
+      $items[] = $item->toHash();
+    }
+    return [
+      'id' => $this->id,
+      'order_reference' => $this->order_reference,
+      'customer_number' => $this->customer_number,
+      'service_point_reference' => $this->service_point_reference,
+      'recipient' => $this->recipient ? $this->recipient->toHash() : null,
+      'billing_contact' => $this->billing_contact ? $this->billing_contact->toHash() : null,
+      'product' => $this->product ? ['code' => $this->product->code] : null,
+      'items' => $items
+    ];
+  }
+
   static function import($mixed, $connection = null) {
     if (is_string($mixed)) {
       return new OrderRef($mixed, $connection);
