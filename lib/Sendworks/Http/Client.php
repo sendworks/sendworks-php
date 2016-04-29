@@ -16,7 +16,8 @@ class Client {
     $this->base_uri = isset($options['base_uri']) ? $options['base_uri'] : '';
     $this->headers = isset($options['headers']) ? $options['headers'] : [];
     $this->timeout = 10;
-    $this->user_agent = 'SendworksHttpClient/1.1.2';
+    $this->http_errors = isset($options['http_errors']) ? $options['http_errors'] : true;
+    $this->user_agent = 'SendworksHttpClient/1.1.3';
     $this->user_agent .= ' curl/' . \curl_version()['version'];
     $this->user_agent .= ' PHP/' . PHP_VERSION;
   }
@@ -113,7 +114,13 @@ class Client {
     if ($body && $this->debug) {
       error_log("$body\n", 3, is_string($this->debug) ? fopen($this->debug, "a+") : STDOUT);
     }
-    return new Response($header, $body, $curl_info);
+    $response = new Response($header, $body, $curl_info);
+    if ($this->http_errors && $response->getStatusCode() >= 400) {
+      $exception = new BadResponseException();
+      $exception->setResponse($response);
+      throw $exception;
+    }
+    return $response;
   }
 
   protected function getCurlHandle() {
