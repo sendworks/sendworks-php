@@ -27,4 +27,20 @@ class ServicePoint {
     }
     return $this->reference;
   }
+
+  function toHash() {
+    return array(
+      'reference' => $this->reference,
+      'title' => $this->getTitle(),
+      'name' => $this->name,
+      'street1' => $this->street1,
+      'street2' => $this->street2,
+      'post_code' => $this->post_code,
+      'city' => $this->city,
+      'region' => $this->region,
+      'country_code' => $this->country_code,
+      'lat' => $this->lat,
+      'lng' => $this->lng
+    );
+  }
 }
