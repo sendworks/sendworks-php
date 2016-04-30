@@ -1,6 +1,7 @@
 {
     "name": "sendworks/sendworks-php",
     "description": "PHP Client bindings for Sendworks Shipping API",
+    "license": "MIT",
     "version": "1.0.0",
     "require": {
         "php": ">=5.5.0",
