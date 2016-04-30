@@ -5,27 +5,12 @@ class ServicePointsCollection
 {
     protected $connection;
 
-<<<<<<< 3156e7883f94f49f71a396fdd31383a8b50e1acc
-  function __construct($connection) {
-    $this->connection = $connection;
-  }
-
-  function find($product, $reference) {
-    if ($product instanceOf Product) {
-      $product_code = $product->code;
-    } else {
-      $product_code = $product;
-    }
-    if ($reference instanceOf ServicePoint) {
-      $reference = $reference->reference;
-=======
-    function __construct($connection)
+    public function __construct($connection)
     {
         $this->connection = $connection;
->>>>>>> Automatic fixing of coding standards according to PSR2
     }
 
-    function find($product, $reference)
+    public function find($product, $reference)
     {
         $query = [];
         if ($product instanceof Product) {
@@ -40,7 +25,7 @@ class ServicePointsCollection
         return new ServicePoint(json_decode($response->getBody(), true));
     }
 
-    function select($product, $recipient, $limit = null)
+    public function select($product, $recipient, $limit = null)
     {
         $query = [];
         if ($product instanceof Product) {

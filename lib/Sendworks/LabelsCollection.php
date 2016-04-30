@@ -5,12 +5,12 @@ class LabelsCollection
 {
     protected $connection;
 
-    function __construct($connection)
+    public function __construct($connection)
     {
         $this->connection = $connection;
     }
 
-    function fetch($mixed)
+    public function fetch($mixed)
     {
         if ($mixed instanceof LabelRef) {
             $path = $mixed->url;
@@ -30,7 +30,7 @@ class LabelsCollection
         }
     }
 
-    protected function client()
+    public protected function client()
     {
         return $this->connection->client();
     }

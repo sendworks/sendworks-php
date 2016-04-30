@@ -8,7 +8,7 @@ class Product
     public $name;
     public $carrier;
     public $service_points = [];
-    function __construct($data = [], $connection = null)
+    public function __construct($data = [], $connection = null)
     {
         $this->connection = $connection;
         foreach (['code', 'name'] as $prop) {
@@ -31,7 +31,7 @@ class Product
         }
     }
 
-    static function import($mixed, $connection = null)
+    public static function import($mixed, $connection = null)
     {
         if ($mixed instanceof Product) {
             return $mixed;

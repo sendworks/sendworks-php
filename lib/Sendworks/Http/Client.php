@@ -9,7 +9,7 @@ class Client
 
     protected $curl;
 
-    function __construct($options = [])
+    public function __construct($options = [])
     {
         if (!extension_loaded('curl')) {
             trigger_error("curl extension required", E_USER_ERROR);
@@ -24,22 +24,22 @@ class Client
         $this->user_agent .= ' PHP/' . PHP_VERSION;
     }
 
-    function get($path, $options = [])
+    public function get($path, $options = [])
     {
         return $this->send('GET', $path, $options);
     }
 
-    function post($path, $options = [])
+    public function post($path, $options = [])
     {
         return $this->send('POST', $path, $options);
     }
 
-    function put($path, $options = [])
+    public function put($path, $options = [])
     {
         return $this->send('PUT', $path, $options);
     }
 
-    function delete($path, $options = [])
+    public function delete($path, $options = [])
     {
         return $this->send('DELETE', $path, $options);
     }

@@ -17,7 +17,7 @@ class Address
     public $lat;
     public $lng;
 
-    function __construct($data = [])
+    public function __construct($data = [])
     {
         foreach (['id', 'residential', 'name', 'street1', 'street2', 'post_code', 'city', 'region', 'country_code', 'phone', 'email', 'lat', 'lng'] as $prop) {
             if (isset($data[$prop])) {
@@ -26,7 +26,7 @@ class Address
         }
     }
 
-    function toHash()
+    public function toHash()
     {
         return [
         'id' => $this->id,
@@ -45,7 +45,7 @@ class Address
          ];
     }
 
-    static function import($mixed)
+    public static function import($mixed)
     {
         if ($mixed instanceof Address) {
             return $mixed;

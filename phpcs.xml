@@ -3,10 +3,6 @@
 <ruleset name="PHP-SDK">
  <description>The custom ruleset based on the PSR-2 coding standard.</description>
  <rule ref="PSR2"/>
- <!-- The following rules needs manual modifications to be fixed -->
- <rule ref="Squiz.Scope.MethodScope.Missing">
-  <severity>0</severity>
- </rule>
  <rule ref="Generic.Files.LineLength.TooLong">
   <severity>0</severity>
  </rule>

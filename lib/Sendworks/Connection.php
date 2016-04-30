@@ -12,7 +12,7 @@ class Connection
     public $orders;
     public $shipments;
 
-    function __construct($api_token, $domain = 'api.sandbox.sendworks.com', $http_options = [])
+    public function __construct($api_token, $domain = 'api.sandbox.sendworks.com', $http_options = [])
     {
         $this->api_token = $api_token;
         $this->domain = $domain;
@@ -24,7 +24,7 @@ class Connection
         $this->labels = new LabelsCollection($this);
     }
 
-    function client()
+    public function client()
     {
         if (!$this->client) {
             $options = $this->http_options;

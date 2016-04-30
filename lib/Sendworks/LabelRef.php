@@ -6,23 +6,23 @@ class LabelRef
     protected $connection;
     protected $label;
     public $url;
-    function __construct($url, $connection = null)
+    public function __construct($url, $connection = null)
     {
         $this->connection = $connection;
         $this->url = $url;
     }
 
-    function __get($prop)
+    public function __get($prop)
     {
         return $this->resolve()->$prop;
     }
 
-    function __call($fn, $args)
+    public function __call($fn, $args)
     {
         return call_user_func_array([$this->resolve(), $fn], $args);
     }
 
-    function resolve()
+    public function resolve()
     {
         if (!$this->label) {
             $this->label = $this->connection->labels->fetch($this);
@@ -30,7 +30,7 @@ class LabelRef
         return $this->label;
     }
 
-    function toHash()
+    public function toHash()
     {
         return [
         'url' => $this->url

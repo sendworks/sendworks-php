@@ -5,12 +5,12 @@ class ShipmentsCollection
 {
     protected $connection;
 
-    function __construct($connection)
+    public function __construct($connection)
     {
         $this->connection = $connection;
     }
 
-    function select()
+    public function select()
     {
         $response = $this->client()->get('shipments');
         $result = array();
@@ -20,7 +20,7 @@ class ShipmentsCollection
         return $result;
     }
 
-    function fetch($mixed)
+    public function fetch($mixed)
     {
         $path = $this->buildUrl($mixed);
         $response = $this->client()->get($path);
@@ -29,7 +29,7 @@ class ShipmentsCollection
         }
     }
 
-    function rates($mixed)
+    public function rates($mixed)
     {
         $path = $this->buildUrl($mixed) . "/rates";
         $response = $this->client()->get($path);
@@ -40,7 +40,7 @@ class ShipmentsCollection
         return $result;
     }
 
-    function buy($mixed)
+    public function buy($mixed)
     {
         $path = $this->buildUrl($mixed) . "/buy";
         $response = $this->client()->post($path);
@@ -51,7 +51,7 @@ class ShipmentsCollection
         }
     }
 
-    function cancel($mixed)
+    public function cancel($mixed)
     {
         $path = $this->buildUrl($mixed) . "/cancel";
         $response = $this->client()->post($path);
@@ -62,7 +62,7 @@ class ShipmentsCollection
         }
     }
 
-    function save($shipment)
+    public function save($shipment)
     {
         if ($shipment->id) {
             $path = "shipments/" . $shipment->id;

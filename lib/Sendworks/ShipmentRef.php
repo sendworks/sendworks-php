@@ -6,18 +6,18 @@ class ShipmentRef
     protected $connection;
     protected $shipment;
     public $url;
-    function __construct($url, $connection = null)
+    public function __construct($url, $connection = null)
     {
         $this->connection = $connection;
         $this->url = $url;
     }
 
-    function __get($prop)
+    public function __get($prop)
     {
         return $this->resolve()->$prop;
     }
 
-    function resolve()
+    public function resolve()
     {
         if (!$this->shipment) {
             $this->shipment = $this->connection->shipments->fetch($this);
@@ -25,7 +25,7 @@ class ShipmentRef
         return $this->shipment;
     }
 
-    function toHash()
+    public function toHash()
     {
         return [
         'url' => $this->url

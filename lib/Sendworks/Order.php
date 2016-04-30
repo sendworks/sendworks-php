@@ -17,7 +17,7 @@ class Order
     public $tax_value;
     public $shipments;
 
-    function __construct($data = [], $connection = null)
+    public function __construct($data = [], $connection = null)
     {
         $this->connection = $connection;
         foreach (['id', 'order_reference', 'customer_number', 'service_point_reference'] as $prop) {
@@ -46,17 +46,17 @@ class Order
         }
     }
 
-    function save()
+    public function save()
     {
         return $this->connection->orders->save($this);
     }
 
-    function delete()
+    public function delete()
     {
         return $this->connection->orders->delete($this);
     }
 
-    function toHash()
+    public function toHash()
     {
         $items = [];
         foreach ($this->items as $item) {
@@ -74,12 +74,11 @@ class Order
         ];
     }
 
-    static function import($mixed, $connection = null)
+    public static function import($mixed, $connection = null)
     {
         if (is_string($mixed)) {
             return new OrderRef($mixed, $connection);
         }
         return new self($mixed, $connection);
     }
-
 }

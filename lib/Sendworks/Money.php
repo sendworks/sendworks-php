@@ -6,13 +6,13 @@ class Money
     public $cents;
     public $currency;
 
-    function __construct($data)
+    public function __construct($data)
     {
         $this->cents = $data['cents'];
         $this->currency = $data['currency'];
     }
 
-    function toHash()
+    public function toHash()
     {
         return [
         'cents' => $this->cents,
@@ -20,12 +20,12 @@ class Money
         ];
     }
 
-    function toFloat()
+    public function toFloat()
     {
         return $this->cents / 100;
     }
 
-    static function import($mixed)
+    public static function import($mixed)
     {
         if (is_array($mixed)) {
             return new self($mixed);

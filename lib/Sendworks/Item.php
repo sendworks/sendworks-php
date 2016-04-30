@@ -10,7 +10,7 @@ class Item
     public $quantity;
     public $value;
 
-    function __construct($data = [])
+    public function __construct($data = [])
     {
         foreach (['id', 'description', 'sku', 'weight_in_g', 'quantity'] as $prop) {
             if (isset($data[$prop])) {
@@ -20,7 +20,7 @@ class Item
         $this->value = isset($data['value']) ? Money::import($data['value']) : null;
     }
 
-    function toHash()
+    public function toHash()
     {
         return [
         'id' => $this->id,

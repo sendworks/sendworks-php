@@ -5,12 +5,12 @@ class ProductsCollection
 {
     protected $connection;
 
-    function __construct($connection)
+    public function __construct($connection)
     {
         $this->connection = $connection;
     }
 
-    function select($recipient = null, $order = null)
+    public function select($recipient = null, $order = null)
     {
         $query = [];
         if ($recipient) {

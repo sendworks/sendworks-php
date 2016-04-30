@@ -5,12 +5,12 @@ class BadResponseException extends \Exception
 {
     protected $response;
 
-    function setResponse($response)
+    public function setResponse($response)
     {
         $this->response = $response;
     }
 
-    function getResponse()
+    public function getResponse()
     {
         return $this->response;
     }

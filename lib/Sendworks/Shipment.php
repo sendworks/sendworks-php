@@ -15,7 +15,7 @@ class Shipment
     public $order;
     public $allow;
 
-    function __construct($data = [], $connection = null)
+    public function __construct($data = [], $connection = null)
     {
         $this->connection = $connection;
         foreach (['id','shipment_reference','tracking_url'] as $prop) {
@@ -47,42 +47,42 @@ class Shipment
         }
     }
 
-    function rates()
+    public function rates()
     {
         return $this->connection->shipments->rates($this);
     }
 
-    function buy()
+    public function buy()
     {
         return $this->connection->shipments->buy($this);
     }
 
-    function cancel()
+    public function cancel()
     {
         return $this->connection->shipments->cancel($this);
     }
 
-    function save()
+    public function save()
     {
         return $this->connection->shipments->save($this);
     }
 
-    function allowChange()
+    public function allowChange()
     {
         return isset($this->allow, $this->allow['change']) && $this->allow['change'];
     }
 
-    function allowPurchase()
+    public function allowPurchase()
     {
         return isset($this->allow, $this->allow['purchase']) && $this->allow['purchase'];
     }
 
-    function allowCancel()
+    public function allowCancel()
     {
         return isset($this->allow, $this->allow['cancel']) && $this->allow['cancel'];
     }
 
-    function toHash()
+    public function toHash()
     {
         $parcels = [];
         foreach ($this->parcels as $parcel) {
@@ -104,7 +104,7 @@ class Shipment
         ];
     }
 
-    static function import($mixed, $connection = null)
+    public static function import($mixed, $connection = null)
     {
         if (is_string($mixed)) {
             return new ShipmentRef($mixed, $connection);

@@ -7,19 +7,19 @@ class Label
     public $filename;
     public $content;
 
-    function __construct($data, $connection)
+    public function __construct($data, $connection)
     {
         $this->connection = $connection;
         $this->filename = $data['filename'];
         $this->content = $data['content'];
     }
 
-    function write($destination)
+    public function write($destination)
     {
         file_put_contents($destination, $this->content);
     }
 
-    static function import($mixed, $connection = null)
+    public static function import($mixed, $connection = null)
     {
         if (is_array($mixed)) {
             return new self($mixed, $connection);

@@ -14,7 +14,7 @@ class ServicePoint
     public $lat;
     public $lng;
 
-    function __construct($data = [])
+    public function __construct($data = [])
     {
         foreach (['reference', 'name', 'street1', 'street2', 'post_code', 'city', 'region', 'country_code', 'lat', 'lng'] as $prop) {
             if (isset($data[$prop])) {
@@ -23,7 +23,7 @@ class ServicePoint
         }
     }
 
-    function getTitle()
+    public function getTitle()
     {
         if ($this->name) {
             return implode(", ", array_filter(array($this->name, $this->street1, $this->post_code, $this->city)));
@@ -31,7 +31,7 @@ class ServicePoint
         return $this->reference;
     }
 
-    function toHash()
+    public function toHash()
     {
         return array(
         'reference' => $this->reference,

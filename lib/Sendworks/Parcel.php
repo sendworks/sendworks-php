@@ -10,7 +10,7 @@ class Parcel
     public $weight_in_g;
     public $calculated_weight_in_g;
 
-    function __construct($data = [])
+    public function __construct($data = [])
     {
         foreach (['id', 'height_in_cm', 'width_in_cm', 'length_in_cm', 'weight_in_g', 'calculated_weight_in_g'] as $prop) {
             if (isset($data[$prop])) {
@@ -19,7 +19,7 @@ class Parcel
         }
     }
 
-    function toHash()
+    public function toHash()
     {
         return [
         'id' => $this->id,
@@ -31,12 +31,11 @@ class Parcel
         ];
     }
 
-    static function import($mixed)
+    public static function import($mixed)
     {
         if ($mixed instanceof Parcel) {
             return $mixed;
         }
         return new self($mixed);
     }
-
 }

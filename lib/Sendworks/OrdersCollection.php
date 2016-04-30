@@ -5,12 +5,12 @@ class OrdersCollection
 {
     protected $connection;
 
-    function __construct($connection)
+    public function __construct($connection)
     {
         $this->connection = $connection;
     }
 
-    function select()
+    public function select()
     {
         $response = $this->client()->get('orders');
         $result = array();
@@ -20,7 +20,7 @@ class OrdersCollection
         return $result;
     }
 
-    function save($order)
+    public function save($order)
     {
         if ($order->id) {
             $path = "orders/" . $order->id;
@@ -33,7 +33,7 @@ class OrdersCollection
         }
     }
 
-    function fetch($mixed)
+    public function fetch($mixed)
     {
         if ($mixed instanceof OrderRef) {
             $path = $mixed->url;
@@ -46,7 +46,7 @@ class OrdersCollection
         }
     }
 
-    function delete($mixed)
+    public function delete($mixed)
     {
         if ($mixed instanceof OrderRef) {
             $path = $mixed->url;

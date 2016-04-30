@@ -3,19 +3,19 @@ namespace Sendworks\Http;
 
 class Response
 {
-    function __construct($raw_header, $body, $curl_info)
+    public function __construct($raw_header, $body, $curl_info)
     {
         $this->raw_header = $raw_header;
         $this->body = $body;
         $this->curl_info = $curl_info;
     }
 
-    function getStatusCode()
+    public function getStatusCode()
     {
         return $this->curl_info['http_code'];
     }
 
-    function getHeader($name)
+    public function getHeader($name)
     {
         $result = [];
         if (preg_match('/^'.$name.': (.+)$/im', $this->raw_header, $mm)) {
@@ -24,7 +24,7 @@ class Response
         return $result;
     }
 
-    function getBody()
+    public function getBody()
     {
         return $this->body;
     }
