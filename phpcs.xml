@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--suppress XmlUnboundNsPrefix -->
+<ruleset name="PHP-SDK">
+ <description>The custom ruleset based on the PSR-2 coding standard.</description>
+ <rule ref="PSR2"/>
+ <!-- These following sniffs can automatically be fixed by phpcbf !-->
+ <rule ref="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine">
+  <severity>0</severity>
+ </rule>
+ <rule ref="Squiz.Commenting.ClosingDeclarationComment.Missing">
+  <severity>0</severity>
+ </rule>
+ <rule ref="Squiz.WhiteSpace.FunctionSpacing.After">
+  <severity>0</severity>
+ </rule>
+ <rule ref="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody">
+  <severity>0</severity>
+ </rule>
+ <rule ref="PSR2.Files.EndFileNewline.NoneFound">
+  <severity>0</severity>
+ </rule>
+ <rule ref="Generic.Files.EndFileNewline.NotFound">
+  <severity>0</severity>
+ </rule>
+ <rule ref="Generic.WhiteSpace.ScopeIndent.Incorrect">
+  <severity>0</severity>
+ </rule>
+ <rule ref="Generic.WhiteSpace.ScopeIndent.IncorrectExact">
+  <severity>0</severity>
+ </rule>
+ <rule ref="Generic.PHP.LowerCaseKeyword.Found">
+  <severity>0</severity>
+ </rule>
+ <rule ref="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed">
+  <severity>0</severity>
+ </rule>
+ <rule ref="Generic.PHP.LowerCaseKeyword.Found">
+  <severity>0</severity>
+ </rule>
+ <rule ref="Squiz.WhiteSpace.FunctionSpacing.Before">
+  <severity>0</severity>
+ </rule>
+ <rule ref="PSR2.Classes.ClassDeclaration.OpenBraceNewLine">
+  <severity>0</severity>
+ </rule>
+ <rule ref="PSR2.ControlStructures.SwitchDeclaration.BreakIndent">
+  <severity>0</severity>
+ </rule>
+ <!-- The following rules needs manual modifications to be fixed -->
+ <rule ref="Squiz.Scope.MethodScope.Missing">
+  <severity>0</severity>
+ </rule>
+ <rule ref="Generic.Files.LineLength.TooLong">
+  <severity>0</severity>
+ </rule>
+</ruleset>
