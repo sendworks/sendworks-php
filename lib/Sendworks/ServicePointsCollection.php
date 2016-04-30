@@ -9,7 +9,6 @@ class ServicePointsCollection {
   }
 
   function find($product, $reference) {
-    $query = [];
     if ($product instanceOf Product) {
       $product_code = $product->code;
     } else {
