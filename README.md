@@ -19,7 +19,7 @@ Alternatively, you can use [Composer](https://getcomposer.org/) to load the libr
     }
   ],
   "require": {
-    "sendworks/sendworks-php" : "master"
+    "sendworks/sendworks-php" : "dev-master"
   }
 }
 ```
