@@ -8,20 +8,10 @@ This library wraps the Sendworks REST API in an object-oriented PHP interface. F
 
 You can use the library by cloning this repository into a subfolder of your application and include the file [`include_all.php`](https://github.com/sendworks/sendworks-php/blob/master/include_all.php).
 
-Alternatively, you can use [Composer](https://getcomposer.org/) to load the library. Here's a sample composer.json file:
+Alternatively, you can use [Composer](https://getcomposer.org/) to load the library. Just type:
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/sendworks/sendworks-php"
-    }
-  ],
-  "require": {
-    "sendworks/sendworks-php" : "dev-master"
-  }
-}
+```
+composer require sendworks/sendworks-php
 ```
 
 ##Getting started
