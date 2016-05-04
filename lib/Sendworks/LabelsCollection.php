@@ -30,7 +30,7 @@ class LabelsCollection
         }
     }
 
-    public protected function client()
+    protected function client()
     {
         return $this->connection->client();
     }
