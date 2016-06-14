@@ -120,7 +120,11 @@ class Client
         $curl_info = curl_getinfo($curl);
         list($header, $body) = explode("\r\n\r\n", $result, 2);
         if ($body && $this->debug) {
-            error_log("$body\n", 3, is_string($this->debug) ? fopen($this->debug, "a+") : STDOUT);
+            if (is_string($this->debug)) {
+                error_log("$body\n", 3, $this->debug);
+            } else {
+                fwrite(is_resource($this->debug) ? $this->debug : STDOUT, "$body\n");
+            }
         }
         $response = new Response($header, $body, $curl_info);
         if ($this->http_errors && $response->getStatusCode() >= 400) {

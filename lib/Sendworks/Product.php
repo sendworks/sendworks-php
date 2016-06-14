@@ -16,7 +16,9 @@ class Product
                 $this->$prop = $data[$prop];
             }
         }
-        $this->carrier = new Carrier($data['carrier']);
+        if (isset($data['carrier'])) {
+            $this->carrier = new Carrier($data['carrier']);
+        }
         if (isset($data['price'])) {
             $this->price = Money::import($data['price']);
         }
