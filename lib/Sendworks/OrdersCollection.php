@@ -10,9 +10,9 @@ class OrdersCollection
         $this->connection = $connection;
     }
 
-    public function select()
+    public function select($filters = [])
     {
-        $response = $this->client()->get('orders');
+        $response = $this->client()->get('orders', ['query' => $filters]);
         $result = array();
         foreach (json_decode($response->getBody(), true) as $struct) {
             $result[] = Order::import($struct, $this->connection);

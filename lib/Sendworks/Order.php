@@ -20,7 +20,7 @@ class Order
     public function __construct($data = [], $connection = null)
     {
         $this->connection = $connection;
-        foreach (['id', 'order_reference', 'customer_number', 'service_point_reference'] as $prop) {
+        foreach (['id', 'order_reference', 'shop_system', 'customer_number', 'service_point_reference'] as $prop) {
             if (isset($data[$prop])) {
                 $this->$prop = $data[$prop];
             }

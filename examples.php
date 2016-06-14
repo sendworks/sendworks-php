@@ -22,8 +22,13 @@ $recipient = new Sendworks\Address(['post_code' => 2860, 'country_code' => 'DK']
 $products = $sendworks->products->select();
 var_dump($sendworks->service_points->select($products[0], $recipient));
 
-// List orders
+// List all orders
 var_dump($sendworks->orders->select());
+
+// Find order by shop system and reference (shop system id)
+foreach ($sendworks->orders->select(['shop_system' => 'magento', 'order_reference' => '100000001']) as $order) {
+  var_dump($order);
+}
 
 // Get shipment from order
 $shipment = $sendworks->orders->select()[0]->shipments[0]->resolve();
