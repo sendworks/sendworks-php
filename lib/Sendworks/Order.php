@@ -6,6 +6,7 @@ class Order
     protected $connection;
     public $id;
     public $order_reference;
+    public $shop_system;
     public $customer_number;
     public $recipient;
     public $billing_contact;
@@ -16,11 +17,12 @@ class Order
     public $shipping_cost;
     public $tax_value;
     public $shipments;
+    public $weight_in_g;
 
     public function __construct($data = [], $connection = null)
     {
         $this->connection = $connection;
-        foreach (['id', 'order_reference', 'shop_system', 'customer_number', 'service_point_reference'] as $prop) {
+        foreach (['id', 'order_reference', 'shop_system', 'customer_number', 'service_point_reference', 'weight_in_g'] as $prop) {
             if (isset($data[$prop])) {
                 $this->$prop = $data[$prop];
             }
@@ -67,6 +69,7 @@ class Order
         'order_reference' => $this->order_reference,
         'customer_number' => $this->customer_number,
         'service_point_reference' => $this->service_point_reference,
+        'weight_in_g' => $this->weight_in_g,
         'recipient' => $this->recipient ? $this->recipient->toHash() : null,
         'billing_contact' => $this->billing_contact ? $this->billing_contact->toHash() : null,
         'product' => $this->product ? ['code' => $this->product->code] : null,
